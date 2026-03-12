@@ -1,0 +1,46 @@
+### Registro de Usuario
+POST http://localhost:3001/user/registerUser
+Content-Type: application/json
+
+{
+  "name": "Juan",
+  "lastname": "Akerman",
+  "email": "martinjiro25@gmail.com",
+  "password": "prueba1234",
+  "birthDate": "10/02/2026",
+  "document": 54029029,
+  "addresses": {
+    "billingAddress": {
+      "streetName": "Pisati",
+      "streetNumber": 460,
+      "floor": 2,
+      "department": "B",
+      "city": "Haedo",
+      "state": "Buenos Aires",
+      "postalCode": 1706,
+      "country": "Argentina",
+      "phone": 1154567678
+    },
+    "deliveryAddress": {
+      "fullName": "Juan Akerman",
+      "streetName": "Pisati",
+      "streetNumber": 460,
+      "floor": 2,
+      "department": "B",
+      "city": "Haedo",
+      "state": "Buenos Aires",
+      "postalCode": 1706,
+      "country": "Argentina",
+      "phone": 1154567678
+    }
+  }
+}
+
+### Login User
+POST http://localhost:3001/user/loginUser
+Content-Type: application/json
+
+{
+  "email": "martinjiro24@gmail.com",
+  "password": "prueba1234"
+}

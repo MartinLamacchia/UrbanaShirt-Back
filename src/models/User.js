@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   },
   birthDate: {
     type: String,
-    require: true,
+    required: true,
   },
   document: {
     type: Number,
@@ -30,101 +30,102 @@ const userSchema = new mongoose.Schema({
     billingAddress: {
       streetName: {
         type: String,
-        required: true
+        required: true,
       },
       streetNumber: {
         type: Number,
-        required: true
+        required: true,
       },
       floor: {
         type: Number,
-        required: false
+        required: false,
       },
       department: {
         type: String,
-        required: false
+        required: false,
       },
       city: {
         type: String,
-        required: true
+        required: true,
       },
       state: {
         type: String,
-        required: true
+        required: true,
       },
       postalCode: {
         type: String,
-        required: true
+        required: true,
       },
       country: {
         type: String,
-        required: true
+        required: true,
       },
       phone: {
         type: Number,
-        required: true
-      }
+        required: true,
+      },
     },
     deliveryAddress: {
       fullName: {
         type: String,
-        required: true
+        required: true,
       },
       streetName: {
         type: String,
-        required: true
+        required: true,
       },
       streetNumber: {
         type: Number,
-        required: true
+        required: true,
       },
       floor: {
         type: Number,
-        required: false
+        required: false,
       },
       department: {
         type: String,
-        required: false
+        required: false,
       },
       city: {
         type: String,
-        required: true
+        required: true,
       },
       state: {
         type: String,
-        required: true
+        required: true,
       },
       postalCode: {
         type: String,
-        required: true
+        required: true,
       },
       country: {
         type: String,
-        required: true
+        required: true,
       },
       phone: {
         type: Number,
-        required: true
-      }
-    }
+        required: true,
+      },
+    },
   },
   createdAt: {
     type: Date,
     default: Date.now,
-  }
+  },
 });
 
-userSchema.pre('save', async function (next) {
-  const user = this;
-  if (!user.isModified('password')) {
-      return next();
-  }
-  try {
-      user.password = await bcrypt.hash(user.password, 10);
-      next();
-  } catch (error) {
-      return next("Error hashing password", error);
-  }
-})
+userSchema.pre("save", async function () {
 
-module.exports = mongoose.model('User', userSchema);
+  if (!this.isModified("password")) {
+    return;
+  }
+
+  try {
+    this.password = await bcrypt.hash(this.password, 10);
+  } catch (error) {
+    throw error;
+  }
+
+});
+
+module.exports = mongoose.model("User", userSchema);
